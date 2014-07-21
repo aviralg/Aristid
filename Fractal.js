@@ -52,7 +52,7 @@ var Fractal = function Fractal( name
                  {
                      // var ya = ya;
                      // var yb = yb;
-                     return y * ya + yb;
+                     return ydimension - (y * ya + yb);
                  }
                ];
     }
@@ -66,6 +66,7 @@ var Fractal = function Fractal( name
                              , "xmax"   :   0.0
                              , "ymin"   :   0.0
                              , "ymax"   :   0.0
+                             , "leaves" :   0
                              };
         var state = { "angles"  :   []
                     , "points"  :   []
@@ -74,13 +75,15 @@ var Fractal = function Fractal( name
                                     }
                     , "angle"   :   this.correction + rotation
                     , "count"   :   0
+                    , "leaves"  :   0
                     };
-
         this.bounds_helper( this.axiom
                           , order
                           , order
                           , state
                           );
+        this.bounds[order].leaves = state.leaves;
+        console.log(state);
         return state.count;
     }
 
@@ -88,6 +91,7 @@ var Fractal = function Fractal( name
     {
         if(level == 1)
         {
+            ++state.leaves;
             for(var i = 0; i < axiom.length; ++i)
             {
                 switch(axiom[i])
@@ -152,18 +156,35 @@ var Fractal = function Fractal( name
         }
     }
 
-    this.render = function(order, xscale, yscale, context, rotation)
+    this.render = function(order, xscale, yscale, context, rotation, leaves)
     {
+        var gradient = d3.scale.linear()
+                         .domain([0, 1/6, 2/6, 1/2, 2/3, 5/6, 1])
+                         // .range(["white", "black"]);
+                         .range(["red","orange", "yellow", "green", "blue", "indigo", "violet"]);
+        // rainbowGradient = context.createLinearGradient(0, 0, canvas.width, 0);
+        // rainbowGradient.addColorStop(0, 'red');
+        // rainbowGradient.addColorStop(1 / 6, 'orange');
+        // rainbowGradient.addColorStop(2 / 6, 'yellow');
+        // rainbowGradient.addColorStop(3 / 6, 'green')
+        // rainbowGradient.addColorStop(4 / 6, 'blue');
+        // rainbowGradient.addColorStop(5 / 6, 'Indigo');
+        // rainbowGradient.addColorStop(1, 'Violet');
+
         var state = { "angles"  :   []
                     , "points"  :   []
                     , "point"   :   { "x" : 0.0
                                     , "y" : 0.0
                                     }
                     , "angle"   :   this.correction + rotation
+                    , "leaves"  :   leaves
+                    , "leaf"    :   0
+                    , "gradient":   gradient
                     };
-
+        console.log(gradient(0.0));
+        console.log(gradient(1.0));
+        context.strokeStyle = "#FFFF000";
         context.beginPath();
-
         context.moveTo( xscale(state.point.x)
                       , yscale(state.point.y)
                       );
@@ -176,13 +197,19 @@ var Fractal = function Fractal( name
                           , state
                           , context
                           );
-        context.stroke();
+        context.closePath();
     }
 
     this.render_helper = function(axiom, order, level, xscale, yscale, state, context)
     {
         if(level == 1)
         {
+            context.strokeStyle = state.gradient(state.leaf / (state.leaves - 1));
+            context.beginPath();
+            context.moveTo( xscale(state.point.x)
+                          , yscale(state.point.y)
+                          );
+            // console.log(state.leaf / (state.leaves - 1));
             for(var i = 0; i < axiom.length; ++i)
             {
                 switch(axiom[i])
@@ -208,10 +235,12 @@ var Fractal = function Fractal( name
                                                 context.lineTo( xscale(state.point.x)
                                                               , yscale(state.point.y)
                                                               );
-                                                // context.stroke();
+                                                //context.stroke();
                                                 break;
                 }
             }
+            context.stroke();
+            ++state.leaf;
         }
         else
         {
@@ -231,9 +260,9 @@ var Fractal = function Fractal( name
                                                 break;
                     case RIGHT_CURLY_BRACE  :   state.point = state.points.pop();
                                                 state.angle = state.angles.pop();
-                                                context.moveTo( xscale(state.point.x)
-                                                              , yscale(state.point.y)
-                                                              );
+                                                // context.moveTo( xscale(state.point.x)
+                                                //               , yscale(state.point.y)
+                                                //               );
                                                 break;
                     default                 :   this.render_helper( this.productions[axiom[i]]
                                                                   , order
@@ -282,7 +311,7 @@ var Fractal = function Fractal( name
         // console.log("Computed Transformation Factors in " + (y - x) + " milliseconds.");
 
         x = performance.now();
-        this.render(order, scales[0], scales[1], context, rotation);
+        this.render(order, scales[0], scales[1], context, rotation, this.bounds[order].leaves);
         y = performance.now();
         table_log.push(["Canvas Rendering", y - x]);
         // console.log("Rendered in " + (y - x) + " milliseconds.");
