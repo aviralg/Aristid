@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <metacharset="UTF-8">
+        <title>Aristid</title>
+        <script src="./Fractal.js"></script>
+<!--
+        <script src="./jquery-2.0.3.min.js"></script>
+        <script src="./d3.v3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"></script>
+        <script src="./untitled.js"></script>
+        <script src="./underscore-min.js"></script>
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"></link>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+-->
+    <style>
+        canvas
+        {
+            border: 1px solid black;
+        }
+    </style>
+    </head>
+    <body>
+        <canvas id="koch-snowflake" width="500px" height = "500px"></canvas>
+        <canvas id="sierpinski-triangle" width="500px" height = "500px"></canvas>
+        <canvas id="hexagonal-gosper" width="500px" height = "500px"></canvas>
+        <canvas id="quadratic-gosper" width="500px" height = "500px"></canvas>
+        <canvas id="dragon-curve" width="500px" height = "500px"></canvas>
+        <canvas id="koch-island" width="500px" height = "500px"></canvas>
+<!--    <canvas id="fern-2" width="500px" height = "500px"></canvas> -->
+        <canvas id="modified-cesaro-triangle" width="500px" height = "500px"></canvas>
+        <canvas id="tree-1" width="500px" height = "500px"></canvas>
+        <canvas id="tree-2" width="500px" height = "500px"></canvas>
+        <canvas id="tree-3" width="500px" height = "500px"></canvas>
+        <canvas id="tree-4" width="500px" height = "500px"></canvas>
+        <canvas id="tree-5" width="500px" height = "500px"></canvas>
+        <canvas id="tree-6" width="500px" height = "500px"></canvas>
+            <!-- <a id="canvas-image" download="Canvas.png">Download Canvas</a> -->
+        <!-- <canvas id="peano-gosper-curve" width="500px" height="500px"></canvas> -->
+<!--
+        <canvas id="canvas3" width="200px" height = "200px"></canvas>
+        <canvas id="canvas4" width="1000px" height = "1000px"></canvas>
+-->
+        <script>
+// var FizzyText = function() {
+//     this.message = 'dat.gui';
+//     this.height  = 250;
+//     this.width   = 250;
+//     this.level   = 8;
+//     this.speed = 0.8;
+//     this.displayOutline = false;
+//     this.background = [12,12,12,0.1];
+//     this.foreground = [13,13,14,0.3];
+//     this.draw       = function(){ console.log("clicked") };
+
+//   // this.explode = function() { ... };
+//   // Define render logic ...
+// };
+
+// window.onload = function() {
+//   // gui.add(text, 'explode');
+// };
+// var text = new FizzyText();
+// var gui = new dat.GUI();
+// gui.add(text, 'message');
+// gui.add(text, 'speed', -5, 5);
+// gui.add(text, 'displayOutline');
+// gui.add(text, 'height').step(1);
+// gui.add(text, 'width').step(1);
+// gui.add(text, 'level').step(1);
+// gui.add(text, 'draw');
+// gui.addColor(text, 'background');
+// gui.addColor(text, 'foreground');
+
+
+ // var canvas = document.getElementById('canvas').getContext('2d');
+
+  // ctx.fillStyle = "red";
+
+    // canvas.beginPath();
+    // canvas.moveTo(0, 0);
+    // canvas.lineTo(100, 0);
+    // canvas.lineTo(100, 100);
+    // canvas.lineTo(0, 100);
+
+    // ctx.stroke();
+    // ctx.closePath();
+  // was: ctx.quadraticCurveTo(60, 70, 70, 150); which is wrong.
+  // ctx.bezierCurveTo(60, 70, 60, 70, 70, 150); // <- this is right formula for the image on the right ->
+  // ctx.lineTo(30, 30);
+  // ctx.fill();
+        koch_snowflake =
+        first_tree = new Fractal( "First Tree"
+                                , "X"
+                                , { "X" : "F[+X][-X]FX"
+                                  , "F" : "FF"
+                                  }
+                                , 25.7 * Math.PI / 180.0
+                                );
+        second_tree = new Fractal( "Second Tree"
+                                 , "F"
+                                 , { "F" : "F[+F]F[-F][F]"
+                                   }
+                                 , Math.PI / 9.0
+                                 , -Math.PI / 2.0
+                                 );
+
+        // fractal.draw( 4
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas1"
+        //             );
+        // fractal.draw( 5
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas2"
+        //             );
+        // fractal.draw( 6
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas3"
+        //             );
+        // fractal.draw( 7
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas4"
+        //             );
+        // koch_snowflake.draw( 4
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas1"
+        //             );
+        // koch_snowflake.draw( 5
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas2"
+        //             );
+        // koch_snowflake.draw( 6
+        //             , 200
+        //             , 200
+        //             , 1
+        //             , "canvas3"
+        //             );
+
+        // second_tree.draw( 5
+        //                 , 1000
+        //                 , 1000
+        //                 , 10
+        //                 , "canvas4"
+        //                 , Math.PI / 1.0
+        //                 );
+
+fractals = { "Koch Snowflake"       :   new Fractal( "Koch Snowflake"
+                                                   , "F++F++F"
+                                                   , { "F" : "F-F++F-F"
+                                                     }
+                                                   , Math.PI / 3.0
+                                                   )
+
+           , "Sierpinski Triangle"  :   new Fractal( "Sierpinski Triangle"
+                                                   , "R"
+                                                   , { "L" : "R+L+R"
+                                                     , "R" : "L-R-L"
+                                                     }
+                                                   , Math.PI / 3.0
+                                                   )
+
+           , "Hexagonal Gosper"     :   new Fractal( "Hexagonal Gosper"
+                                                   , "L"
+                                                   , { "L" : "L+R++R-L--LL-R+"
+                                                     , "R" : "-L+RR++R+L--L-R"
+                                                     }
+                                                   , Math.PI / 3.0
+                                                   )
+           , "Quadratic Gosper"     :   new Fractal( "Quadratic Gosper"
+                                                   , "-R"
+                                                   , { "L" : "LL-R-R+L+L-R-RL+R+LLR-L+R+LL+R-LR-R-L+L+RR-"
+                                                     , "R" : "+LL-R-R+L+LR+L-RR-L-R+LRR-L-RL+L+R-R-L+L+RR"
+                                                     }
+                                                   , Math.PI / 2.0
+                                                   )
+           , "Dragon Curve"         :   new Fractal( "Dragon Curve"
+                                                   ,  "L"
+                                                   , { "L" : "L+R+"
+                                                     , "R" : "-L-R"
+                                                     }
+                                                   , Math.PI / 2.0
+                                                   )
+           , "Koch Island"          :   new Fractal( "Koch Island"
+                                                   , "F-F-F-F"
+                                                   , { "F" : "F-F+F+FF-F-F+F"
+                                                     }
+                                                   , Math.PI / 2.0
+                                                   )
+           , "Fern 2"               :   new Fractal( "Fern 2"
+                                                   , "F"
+                                                   , { "F" : "F[+F]++F"
+                                                     }
+                                                   , Math.PI / 8.0
+                                                   )
+           , "Modified Cesaro Triangle"     : new Fractal( "Modified Cesaro Triangle"
+                                                         , "D"
+                                                         , { "D" : "D+D--D+D"
+                                                           }
+                                                         , 85 * Math.PI / 180.0
+                                                         , - Math.PI
+                                                         )
+           , "Peano Gosper Curve"       :   new Fractal( "Peano Gosper Curve"
+                                                       , "R"
+                                                       , { "L" : "+R-L--L-R++R+L"
+                                                         , "R" : "R-L--L+R++R+L-"
+                                                         }
+                                                       , Math.PI / 3.0
+                                                       )
+            , "Tree - 1"                :   new Fractal( "Tree - 1"
+                                                       , "F"
+                                                       , { "F" : "F[+F]F[-F]F"
+                                                         }
+                                                       , 25.7 * Math.PI / 180.0
+                                                       , -Math.PI / 2
+                                                       )
+            , "Tree - 2"                :   new Fractal( "Tree - 2"
+                                                       , "F"
+                                                       , { "F" : "F[+F]F[-F][F]"
+                                                         }
+                                                       , Math.PI / 9.0
+                                                       , -Math.PI / 2
+                                                       )
+            , "Tree - 3"                :   new Fractal( "Tree - 3"
+                                                       , "F"
+                                                       , { "F" : "FF-[-F+F+F]+[+F-F-F]"
+                                                         }
+                                                       , 22.5 * Math.PI / 180.0
+                                                       , -Math.PI / 2
+                                                       )
+            , "Tree - 4"                :   new Fractal( "Tree - 4"
+                                                       , "X"
+                                                       , { "X" : "F[+X]F[-X]+X"
+                                                         , "F" : "FF"
+                                                         }
+                                                       , Math.PI / 9.0
+                                                       , -Math.PI / 2
+                                                       )
+            , "Tree - 5"                :   new Fractal( "Tree - 5"
+                                                       , "X"
+                                                       , { "X" : "F[+X][-X]FX"
+                                                         , "F" : "FF"
+                                                         }
+                                                       , 25.7 * Math.PI / 180.0
+                                                       , -Math.PI / 2
+                                                       )
+            , "Tree - 6"                :   new Fractal( "Tree - 6"
+                                                       , "X"
+                                                       , { "X" : "F-[[X]+X]+F[+FX]-X"
+                                                         , "F" : "FF"
+                                                         }
+                                                       , 22.5 * Math.PI / 180.0
+                                                       , -Math.PI / 2
+                                                       )
+           }
+
+           fractals["Koch Snowflake"].draw( 8
+                                          , 500
+                                          , 500
+                                          , 5
+                                          , "koch-snowflake"
+                                          , 0.0
+                                          );
+           fractals["Sierpinski Triangle"].draw( 8
+                                               , 500
+                                               , 500
+                                               , 5
+                                               , "sierpinski-triangle"
+                                               , -2 * Math.PI / 3
+                                               );
+
+           fractals["Hexagonal Gosper"].draw( 5
+                                               , 500
+                                               , 500
+                                               , 5
+                                               , "hexagonal-gosper"
+                                               );
+
+           fractals["Quadratic Gosper"].draw( 4
+                                               , 500
+                                               , 500
+                                               , 5
+                                               , "quadratic-gosper"
+                                               );
+
+           fractals["Dragon Curve"].draw( 12
+                                               , 500
+                                               , 500
+                                               , 5
+                                               , "dragon-curve"
+                                               );
+
+           fractals["Koch Island"].draw( 4
+                                               , 500
+                                               , 500
+                                               , 5
+                                               , "koch-island"
+                                               );
+
+
+           // fractals["Fern 2"].draw( 8
+           //                                     , 500
+           //                                     , 500
+           //                                     , 5
+           //                                     , "fern-2"
+           //                                     );
+
+           fractals["Modified Cesaro Triangle"].draw( 6
+                                               , 500
+                                               , 500
+                                               , 10
+                                               , "modified-cesaro-triangle"
+                                               );
+
+           fractals["Tree - 1"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-1"
+                                    );
+
+           fractals["Tree - 2"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-2"
+                                    );
+           fractals["Tree - 3"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-3"
+                                    );
+           fractals["Tree - 4"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-4"
+                                    );
+           fractals["Tree - 5"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-5"
+                                    );
+           fractals["Tree - 6"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "tree-6"
+                                    );
+
+
+           // fractals["Peano Gosper Curve"].draw( 6
+           //                                     , 500
+           //                                     , 500
+           //                                     , 5
+           //                                     , "peano-gosper-curve"
+           //                                     );
+
+
+        </script>
+    </body>
+</html>
