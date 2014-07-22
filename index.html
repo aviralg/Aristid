@@ -65,6 +65,26 @@
         <canvas id="kristall" width="500px" height = "500px"></canvas>
         <canvas id="sierpinski-carpet" width="500px" height = "500px"></canvas>
         <canvas id="lévy-fractal" width="500px" height = "500px"></canvas>
+        <canvas id="penrose-tiling" width="500px" height = "500px"></canvas>
+        <canvas id="quadratic-koch-curve" width="500px" height = "500px"></canvas>
+        <canvas id="minkowski-sausage" width="500px" height = "500px"></canvas>
+        <canvas id="cantor-dust" width="500px" height = "500px"></canvas>
+        <canvas id="koch-curve" width="500px" height = "500px"></canvas>
+        <canvas id="peano-curve" width="500px" height = "500px"></canvas>
+        <canvas id="hilbert-curve" width="500px" height = "500px"></canvas>
+        <canvas id="hilbert-2-curve" width="500px" height = "500px"></canvas>
+        <canvas id="moore-curve" width="500px" height = "500px"></canvas>
+        <canvas id="sierpinski-sieve" width="500px" height = "500px"></canvas>
+        <canvas id="koch-antisnowflake" width="500px" height = "500px"></canvas>
+        <canvas id="cross-stitch-curve" width="500px" height = "500px"></canvas>
+        <canvas id="anticross-stitch-curve" width="500px" height = "500px"></canvas>
+        <canvas id="sierpinski-curve" width="500px" height = "500px"></canvas>
+        <canvas id="terdragon" width="500px" height = "500px"></canvas>
+        <canvas id="mcworter's-pentigree" width="500px" height = "500px"></canvas>
+<!--         <canvas id="" width="500px" height = "500px"></canvas>
+        <canvas id="" width="500px" height = "500px"></canvas>
+        <canvas id="" width="500px" height = "500px"></canvas>
+ -->
             <!-- <a id="canvas-image" download="Canvas.png">Download Canvas</a> -->
         <!-- <canvas id="peano-gosper-curve" width="500px" height="500px"></canvas> -->
 <!--
@@ -327,7 +347,116 @@ fractals = { "Koch Snowflake"       :   new Fractal( "Koch Snowflake"
                                                          }
                                                        , Math.PI / 4.0
                                                        )
-           }
+           , "Penrose Tiling"           :   new Fractal( "Penrose Tiling"
+                                                       , "[7]++[7]++[7]++[7]++[7]"
+                                                       , { "6" : "81++91----71[-81----61]++"
+                                                         , "7" : "+81--91[---61--71]+"
+                                                         , "8" : "-61++71[+++81++91]-"
+                                                         , "9" : "--81++++61[+91++++71]--71"
+                                                         , "1" : ""
+                                                         }
+                                                       , 36 * Math.PI / 180
+                                                       )
+            , "Quadratic Koch Curve"    :   new Fractal( "Quadratic Koch Curve"
+                                                       , "F"
+                                                       , { "F" : "F+F-F-F+F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Minkowski Sausage"        :   new Fractal( "Minkowski Sausage"
+                                                       , "F"
+                                                       , { "F" : "F+F-F-FF+F+F-F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Cantor Dust"              :   new Fractal( "Cantor Dust"
+                                                       , "F"
+                                                       , { "F" : "FfF"
+                                                         , "f" : "fff"
+                                                         }
+                                                       , 0.0
+                                                       )
+           , "Koch Curve"               :   new Fractal( "Koch Curve"
+                                                       , "F"
+                                                       , { "F" : "F+F--F+F"
+                                                         }
+                                                       , Math.PI / 3.0
+                                                       )
+           , "Peano Curve"              :   new Fractal( "Peano Curve"
+                                                       , "F"
+                                                       , { "F" : "F+F-F-F-F+F+F+F-F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Hilbert Curve"            :   new Fractal( "Hilbert Curve"
+                                                       , "L"
+                                                       , { "L" : "+RF-LFL-FR+"
+                                                         , "R" : "-LF+RFR+FL-"
+                                                         , "F" : "F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Hilbert 2 Curve"          :   new Fractal( "Hilbert 2 Curve"
+                                                       , "X"
+                                                       , { "X" : "XFYFX+F+YFXFY-F-XFYFX"
+                                                         , "Y" : "YFXFY-F-XFYFX+F+YFXFY"
+                                                         , "F" : "F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Moore Curve"              :   new Fractal( "Moore Curve"
+                                                       , "LFL-F-LFL"
+                                                       , { "L" : "+RF-LFL-FR+"
+                                                         , "R" : "-LF+RFR+FL-"
+                                                         , "F" : "F"
+                                                         }
+                                                       , Math.PI / 2
+                                                       )
+           , "Sierpinski Sieve"         :   new Fractal( "Sierpinski Sieve"
+                                                       , "FXF++FF++FF"
+                                                       , { "F" : "FF"
+                                                         , "X" : "++FXF--FXF--FXF++"
+                                                         }
+                                                       , Math.PI / 3
+                                                       )
+           , "Koch Antisnowflake"       :   new Fractal( "Koch Antisnowflake"
+                                                       , "F++F++F"
+                                                       , { "F" : "F+F--F+F"
+                                                         }
+                                                       , Math.PI / 3
+                                                       )
+           , "Cross Stitch Curve"       :   new Fractal( "Cross Stitch Curve"
+                                                       , "F+F+F+F"
+                                                       , { "F" : "F-F+F+F-F"
+                                                         }
+                                                       , Math.PI / 2.0
+                                                       )
+           , "Anticross Stitch Curve"   :   new Fractal( "Anticross Stitch Curve"
+                                                       , "F-F-F-F"
+                                                       , { "F" : "F-F+F+F-F"
+                                                         }
+                                                       , Math.PI / 2.0
+                                                       )
+           , "Sierpinski Curve"         :   new Fractal( "Sierpinski Curve"
+                                                       , "F+XF+F+XF"
+                                                       , { "X" : "XF-F+F-XF+F+XF-F+F-X"
+                                                         , "F" : "F"
+                                                         }
+                                                       , Math.PI / 2.0
+                                                       )
+           , "Terdragon"                :   new Fractal( "Terdragon"
+                                                       , "F"
+                                                       , { "F" : "F+F-F"
+                                                         }
+                                                       , 2.0 * Math.PI / 3.0
+                                                       )
+           , "McWorter's Pentigree"     :   new Fractal( "McWorter's Pentigree"
+                                                       , "F"
+                                                       , { "F" : "+F++F----F--F++F++F-"
+                                                         }
+                                                       , 36 * Math.PI / 180
+                                                       )
+           };
 
            fractals["Koch Snowflake"].draw( 8
                                           , 500
@@ -372,6 +501,12 @@ fractals = { "Koch Snowflake"       :   new Fractal( "Koch Snowflake"
                                        , "koch-island"
                                        );
 
+           fractals["Peano Curve"].draw( 5
+                                       , 500
+                                       , 500
+                                       , 5
+                                       , "peano-curve"
+                                       );
 
            // fractals["Fern 2"].draw( 8
            //                                     , 500
@@ -450,12 +585,120 @@ fractals = { "Koch Snowflake"       :   new Fractal( "Koch Snowflake"
                                     , "sierpinski-carpet"
                                     );
 
-           fractals["Lévy Fractal"].draw( 20
+           fractals["Lévy Fractal"].draw( 16
                                     , 500
                                     , 500
                                     , 10
                                     , "lévy-fractal"
                                         );
+           fractals["Penrose Tiling"].draw( 6
+                                    , 500
+                                    , 500
+                                    , 10
+                                    , "penrose-tiling"
+                                    );
+           fractals["Quadratic Koch Curve"].draw( 6
+                                                , 500
+                                                , 500
+                                                , 10
+                                                , "quadratic-koch-curve"
+                                                );
+           fractals["Minkowski Sausage"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "minkowski-sausage"
+                                             );
+
+           fractals["Cantor Dust"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "cantor-dust"
+                                             );
+
+           fractals["Koch Curve"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "koch-curve"
+                                             );
+           fractals["Peano Curve"].draw( 4
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "peano-curve"
+                                             );
+
+           fractals["Hilbert Curve"].draw( 8
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "hilbert-curve"
+                                             );
+           fractals["Hilbert 2 Curve"].draw( 4
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "hilbert-2-curve"
+                                             );
+
+           fractals["Moore Curve"].draw( 5
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "moore-curve"
+                                             );
+
+           fractals["Sierpinski Sieve"].draw( 10
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "sierpinski-sieve"
+                                             );
+
+           fractals["Koch Antisnowflake"].draw( 10
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "koch-antisnowflake"
+                                             );
+
+           fractals["Cross Stitch Curve"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "cross-stitch-curve"
+                                             );
+
+           fractals["Anticross Stitch Curve"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "anticross-stitch-curve"
+                                             );
+
+           fractals["Sierpinski Curve"].draw( 6
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "sierpinski-curve"
+                                             );
+
+           fractals["Terdragon"].draw( 8
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "terdragon"
+                                             );
+
+           fractals["McWorter's Pentigree"].draw( 8
+                                             , 500
+                                             , 500
+                                             , 10
+                                             , "mcworter's-pentigree"
+                                             );
+
            // fractals["Peano Gosper Curve"].draw( 6
            //                                     , 500
            //                                     , 500
